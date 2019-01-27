@@ -12,12 +12,22 @@ class App extends Component {
   ]
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     console.log('Hi');
     this.setState({
       persons: [ 
-      { name : 'Soujanya', company : 'Wipro' },
+      { name : newName, company : 'Wipro' },
       { name : 'Swastik', company : 'Amazon' },
+      { name : 'Shankar', company : 'Allahabad' }
+    ]
+    });
+  }
+
+  nameChangeHandler = (event) => {
+    this.setState({
+      persons: [ 
+      { name : 'Soujanya', company : 'Wipro' },
+      { name : event.target.value, company : 'Amazon' },
       { name : 'Shankar', company : 'Allahabad' }
     ]
     });
@@ -26,9 +36,9 @@ class App extends Component {
     return (
       <div className="App">
        <h1>Hi!, I'm Swastik</h1>
-       <button onClick={this.switchNameHandler}>Switch Name</button>
+       <button onClick={this.switchNameHandler.bind(this, 'Jyoti')}>Switch Name</button>
        <Person name={ this.state.persons[0].name } company={ this.state.persons[0].company }></Person>
-       <Person click={ this.switchNameHandler } name={ this.state.persons[1].name } company={ this.state.persons[1].company }> I love football.</Person>
+       <Person changed= {this.nameChangeHandler} click={ this.switchNameHandler.bind(this, 'Soujanya') } name={ this.state.persons[1].name } company={ this.state.persons[1].company }> I love football.</Person>
        <Person name={ this.state.persons[2].name } company={ this.state.persons[2].company }></Person>
       </div>
       
