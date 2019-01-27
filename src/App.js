@@ -4,11 +4,32 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
+  state = {
+    persons: [ 
+    { name : 'Soujanya', company : 'Wipro' },
+    { name : 'Swastik', company : 'Verizon' },
+    { name : 'Shankar', company : 'Allahabad' }
+  ]
+  }
+
+  switchNameHandler = () => {
+    console.log('Hi');
+    this.setState({
+      persons: [ 
+      { name : 'Soujanya', company : 'Wipro' },
+      { name : 'Swastik', company : 'Amazon' },
+      { name : 'Shankar', company : 'Allahabad' }
+    ]
+    });
+  }
   render() {
     return (
       <div className="App">
        <h1>Hi!, I'm Swastik</h1>
-       <Person></Person>
+       <button onClick={this.switchNameHandler}>Switch Name</button>
+       <Person name={ this.state.persons[0].name } company={ this.state.persons[0].company }></Person>
+       <Person click={ this.switchNameHandler } name={ this.state.persons[1].name } company={ this.state.persons[1].company }> I love football.</Person>
+       <Person name={ this.state.persons[2].name } company={ this.state.persons[2].company }></Person>
       </div>
       
     );
