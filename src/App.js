@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 class App extends Component {
   state = {
     persons: [ 
@@ -61,9 +61,19 @@ class App extends Component {
       }
     };
 
+    // let classes = ['red', 'bold'].join(' ');
+    const classes = [];
+    if(this.state.persons.length <= 1){
+      classes.push('red');
+    }
+    if(this.state.persons.length > 1){
+      classes.push('bold');
+    }
+
     return (
+      <StyleRoot>
       <div className="App">
-       <h1>Hi!, I'm Swastik</h1>
+       <h1 className={classes.join(' ')}>Hi!, I'm Swastik</h1>
        <button style={style} onClick={this.togglePersonHandler}>{ this.showPersons ? 'Hide': 'Show'}</button>
        {
           this.state.showPersons === true ?
@@ -88,7 +98,7 @@ class App extends Component {
         
       }
       </div>
-      
+      </StyleRoot>
     );
     /* return React.createElement('div', null, 
       React.createElement('h1', {className: 'App' }, 'Hi, I\'m Swastik')
