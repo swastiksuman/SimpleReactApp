@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 class App extends Component {
   state = {
@@ -55,20 +55,21 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer',
     };
-
+    let btnClass = '';
+    btnClass = classes.Red;
     // let classes = ['red', 'bold'].join(' ');
-    const classes = [];
+    const assignedClasses = [];
     if(this.state.persons.length <= 1){
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if(this.state.persons.length > 1){
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
     return (
-      <div className="App">
-       <h1 className={classes.join(' ')}>Hi!, I'm Swastik</h1>
-       <button style={style} onClick={this.togglePersonHandler}>{ this.showPersons ? 'Hide': 'Show'}</button>
+      <div className={classes.App}>
+       <h1 className={assignedClasses.join(' ')}>Hi!, I'm Swastik</h1>
+       <button className={btnClass} onClick={this.togglePersonHandler}>{ this.showPersons ? 'Hide': 'Show'}</button>
        {
           this.state.showPersons === true ?
           <div>
@@ -86,11 +87,7 @@ class App extends Component {
        
        </div> : null
       }
-      {
-        this.state.showPersons === true ?
-          style.backgroundColor= 'red' : style.backgroundColor = 'green'
-        
-      }
+      
       </div>
     );
     /* return React.createElement('div', null, 
